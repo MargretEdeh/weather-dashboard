@@ -11,6 +11,7 @@ export interface WeatherData {
     uv: number;
     icon: string;
     unit: 'metric' | 'imperial';
+    highlights?: string[]; 
   }
   
   export interface WeatherError {
