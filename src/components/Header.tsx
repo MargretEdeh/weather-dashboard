@@ -1,6 +1,7 @@
 import { SearchBar } from './SearchBar';
 import { ThemeToggle } from './ThemeToggle';
 import { LuMenu } from "react-icons/lu";
+import lady from "../assets/lady.jpeg"
 
 interface HeaderProps {
     onSearch: (query: string) => void;
@@ -27,7 +28,7 @@ interface HeaderProps {
         <div className="flex items-center space-x-4">
           <ThemeToggle />
           <img
-            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=40&h=40"
+            src={lady}
             alt="Profile"
             className="w-8 h-8 rounded-full object-cover"
           />
