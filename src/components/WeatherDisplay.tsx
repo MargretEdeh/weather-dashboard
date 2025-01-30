@@ -3,6 +3,7 @@ import { WeatherCard } from "./WeatherCard"
 import { WeatherHighlights } from "./WeatherHighlights"
 import type { WeatherData, WeatherError } from "../types/weather"
 import { IoAlertCircleSharp } from "react-icons/io5"
+import { Button } from "./ui/button"
 
 interface WeatherDisplayProps {
   weatherData: WeatherData | null
@@ -53,12 +54,12 @@ export const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
             Today • {new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
           </p>
         </div>
-        <button
+        <Button
           onClick={() => onAddFavorite(weatherData.city)}
           className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
         >
           Add to Favorites
-        </button>
+        </Button>
       </div>
 
       <div className="space-y-8">

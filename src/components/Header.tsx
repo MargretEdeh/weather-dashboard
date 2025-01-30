@@ -1,4 +1,3 @@
-import React from 'react';
 import { SearchBar } from './SearchBar';
 import { ThemeToggle } from './ThemeToggle';
 import { LuMenu } from "react-icons/lu";

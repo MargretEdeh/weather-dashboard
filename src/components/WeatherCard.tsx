@@ -1,7 +1,7 @@
-import React from 'react';
-import { FaWind } from "react-icons/fa";
-import { FaDroplet} from "react-icons/fa6";
-import { FaThermometerHalf } from "react-icons/fa";
+import { FaWind, FaThermometerHalf } from "react-icons/fa";
+import { FaDroplet } from "react-icons/fa6";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "./ui/card";
+import { Button } from "./ui/button";
 
 interface WeatherCardProps {
   city: string;
@@ -11,11 +11,12 @@ interface WeatherCardProps {
   windSpeed: number;
   windDirection: string;
   icon: string;
-  unit: 'metric' | 'imperial';
+  unit: "metric" | "imperial";
   onUnitToggle: () => void;
 }
 
 export const WeatherCard = ({
+  city,
   temperature,
   condition,
   humidity,
@@ -26,48 +27,48 @@ export const WeatherCard = ({
   onUnitToggle,
 }: WeatherCardProps) => {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 md:p-6">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
-        <div className="flex items-center space-x-4">
-          <img src={icon} alt={condition} className="w-16 h-16" />
+    <Card className="bg-white dark:bg-gray-800/50 rounded-3xl border-0 shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer backdrop-blur-xl p-6">
+      <CardHeader className="pb-4">
+        <div className="flex justify-between items-center">
           <div>
-            <div className="flex items-center space-x-2">
-              <div className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
-                {temperature}°{unit === 'metric' ? 'C' : 'F'}
-              </div>
-              <button
-                onClick={onUnitToggle}
-                className="flex items-center space-x-1 px-2 py-1 text-sm bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
-              >
-                <FaThermometerHalf className="w-4 h-4" />
-                <span>Switch to °{unit === 'metric' ? 'F' : 'C'}</span>
-              </button>
-            </div>
-            <p className="text-gray-600 dark:text-gray-300 capitalize">{condition}</p>
+            <CardTitle className="text-2xl font-semibold text-gray-900 dark:text-white">{city}</CardTitle>
+            <CardDescription className="capitalize text-gray-600 dark:text-gray-300">{condition}</CardDescription>
           </div>
+          <img src={icon} alt={condition} className="w-14 h-14 rounded-xl shadow-md bg-gray-100 dark:bg-gray-700 p-2" />
+        </div>
+      </CardHeader>
+
+      <CardContent className="space-y-5">
+        {/* Temperature & Unit Toggle */}
+        <div className="flex items-center justify-between">
+          <div className="text-4xl font-bold text-gray-900 dark:text-white">
+            {temperature}°{unit === "metric" ? "C" : "F"}
+          </div>
+          <Button
+            variant="outline"
+            className="flex items-center gap-2 px-4 py-2 text-blue-500 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-950/80 border-0 rounded-full transition-all duration-200"
+            onClick={onUnitToggle}
+          >
+            <FaThermometerHalf className="w-5 h-5" />
+            <span>Switch to °{unit === "metric" ? "F" : "C"}</span>
+          </Button>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 w-full md:w-auto">
-          <div className="flex items-center space-x-3">
-            <FaDroplet className="text-blue-500" />
-            <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Humidity</p>
-              <p className="text-lg font-semibold text-gray-900 dark:text-white">{humidity}%</p>
-            </div>
+        {/* Weather Details */}
+        <div className="flex justify-between text-sm text-gray-700 dark:text-gray-300">
+          <div className="flex items-center gap-2">
+            <FaDroplet className="text-blue-500 w-5 h-5" />
+            <span className="font-medium">{humidity}% Humidity</span>
           </div>
-
-          <div className="flex items-center space-x-3">
-            <FaWind className="text-blue-500" />
-            <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Wind</p>
-              <p className="text-lg font-semibold text-gray-900 dark:text-white">
-                {windSpeed} {unit === 'metric' ? 'km/h' : 'mph'}
-                <span className="block text-sm text-gray-500 dark:text-gray-400">from {windDirection}</span>
-              </p>
+          <div className="flex items-center gap-2">
+            <FaWind className="text-blue-500 w-5 h-5" />
+            <div className="leading-tight">
+              <span className="font-medium">{windSpeed} {unit === "metric" ? "km/h" : "mph"}</span>
+              <span className="block text-xs text-gray-500 dark:text-gray-400">From {windDirection}</span>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };

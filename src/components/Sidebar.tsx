@@ -2,6 +2,7 @@ import React from "react"
 import { FaPlus, FaStar, FaTrash } from "react-icons/fa"
 import { IoClose } from "react-icons/io5"
 import type { City } from "../types/city"
+import { Button } from "./ui/button"
 
 interface SidebarProps {
   defaultCities: City[]
@@ -66,13 +67,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
               placeholder="Enter city name"
               className="w-full px-3 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-lg focus:ring-2 focus:ring-blue-500 dark:text-white"
             />
-            <button
+            <Button
               type="submit"
               className="flex items-center justify-center w-full px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
             >
               <FaPlus className="w-4 h-4 mr-2" />
               Add to favorites
-            </button>
+            </Button>
           </form>
         </div>
 

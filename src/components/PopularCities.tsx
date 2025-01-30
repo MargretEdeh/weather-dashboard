@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import type { WeatherData } from "../types/weather";
 import { getWeatherByCity } from "../services/weather";
 import { FaWind, FaSearch, FaThermometerHalf } from "react-icons/fa";
