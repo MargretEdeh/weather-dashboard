@@ -3,7 +3,7 @@ import { WeatherData } from "../types/weather";
 const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 const BASE_URL = "https://api.openweathermap.org/data/2.5";
 
-// Define API response type for better TypeScript safety
+// Define API response type
 interface OpenWeatherResponse {
   name: string;
   main: { temp: number; humidity: number };
@@ -11,7 +11,8 @@ interface OpenWeatherResponse {
   wind: { speed: number; deg: number };
   sys: { sunrise: number; sunset: number };
 }
-
+// Fetches weather data for a given city
+// throws An error if the API key is missing or if the fetch request fails
 export async function getWeatherByCity(city: string, unit: 'metric' | 'imperial' = 'metric'): Promise<WeatherData> {
   if (!API_KEY) {
     console.error("API Key is missing. Check your .env file!");

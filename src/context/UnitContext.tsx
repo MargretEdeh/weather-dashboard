@@ -1,6 +1,6 @@
 import type React from "react"
 import { createContext, useState, useContext } from "react"
-
+// Type definition for the unit of measurement.
 type Unit = "metric" | "imperial"
 
 interface UnitContextType {

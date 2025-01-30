@@ -3,6 +3,8 @@ import { FaDroplet } from "react-icons/fa6";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 
+
+//   Props interface for the WeatherCard component.
 interface WeatherCardProps {
   city: string;
   temperature: number;
@@ -15,6 +17,10 @@ interface WeatherCardProps {
   onUnitToggle: () => void;
 }
 
+// WeatherCard Component
+//  Displays weather details for a given city, including temperature, condition, humidity, wind speed, and direction. 
+//  Users can toggle between metric and imperial units.
+ 
 export const WeatherCard = ({
   city,
   temperature,

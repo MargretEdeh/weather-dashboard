@@ -3,6 +3,8 @@ import { FaPlus, FaStar, FaTrash } from "react-icons/fa"
 import { IoClose } from "react-icons/io5"
 import type { City } from "../types/city"
 import { Button } from "./ui/button"
+import { SearchBar } from './SearchBar';
+
 
 interface SidebarProps {
   defaultCities: City[]
@@ -13,6 +15,8 @@ interface SidebarProps {
   onAddFavorite: (city: string) => void
   onRemoveFavorite: (city: string) => void
   currentCity?: string
+  onSearch: (query: string) => void;
+
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -24,6 +28,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onAddFavorite,
   onRemoveFavorite,
   currentCity,
+  onSearch
 }) => {
   const [newCity, setNewCity] = React.useState("")
 
@@ -56,6 +61,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <IoClose className="w-5 h-5 text-gray-500 dark:text-gray-400" />
           </button>
         </div>
+
+        <div className="flex-1 my-5 mx-4 md:hidden ">
+                  <SearchBar onSearch={onSearch} />
+                </div>
 
         <div className="mb-6 bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
           <h3 className="font-semibold mb-2 text-gray-900 dark:text-white">Add to favorites</h3>

@@ -16,6 +16,8 @@ const App: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const { favoriteCities, addToFavorites, removeFromFavorites } = useFavoriteCities()
 
+
+  // Handles the city search input and updates the selected city state.
   const handleSearch = (query: string) => {
     setSelectedCity(query)
     setSidebarOpen(false)
@@ -45,6 +47,7 @@ const App: React.FC = () => {
               onAddFavorite={addToFavorites}
               onRemoveFavorite={removeFromFavorites}
               currentCity={selectedCity}
+              onSearch={handleSearch}
             />
 
             <main className="flex-1 p-4 md:p-8">
@@ -61,11 +64,15 @@ const App: React.FC = () => {
   )
 }
 
+
+// WeatherContent component that conditionally displays weather information for the selected city or a list of popular cities.
+
 const WeatherContent: React.FC<{
   selectedCity: string
   onCitySelect: (city: string) => void
   addToFavorites: (city: string) => void
 }> = ({ selectedCity, onCitySelect, addToFavorites }) => {
+   // Accessing unit context for temperature unit conversion
   const { unit, toggleUnit } = useUnit()
   const { weatherData, error, loading, fetchWeatherData } = useWeatherData(selectedCity, unit)
 
@@ -87,6 +94,7 @@ const WeatherContent: React.FC<{
       />
     )
   } else {
+    // A fallball UI to show when no city is searched or when the page renders
     return <PopularCities cities={defaultCities} onCitySelect={onCitySelect} unit={unit} onUnitToggle={toggleUnit} />
   }
 }
