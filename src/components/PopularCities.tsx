@@ -1,11 +1,12 @@
 import  { useEffect, useState } from "react";
 import type { WeatherData } from "../types/weather";
 import { getWeatherByCity } from "../services/weather";
-import { FaWind, FaSearch, FaThermometerHalf } from "react-icons/fa";
+import { FaWind, FaThermometerHalf } from "react-icons/fa";
 import { FaDroplet } from "react-icons/fa6";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import type { City } from "../types/city";
+import { WeatherFeatures } from "./WeatherFeatures";
 
 interface PopularCitiesProps {
   cities: City[];
@@ -76,8 +77,8 @@ export const PopularCities = ({ unit, cities, onUnitToggle, onCitySelect }: Popu
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
+    <div className=" grid grid-cols-1 gap-5 md:space-y-6">
+      <div className="flex w-s justify-between items-center">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Popular Cities Weather</h2>
         <Button
           onClick={onUnitToggle}
@@ -93,7 +94,7 @@ export const PopularCities = ({ unit, cities, onUnitToggle, onCitySelect }: Popu
         {popularWeather.map((city: WeatherData) => (
           <Card
             key={city.city}
-            className="hover:shadow-lg transition-all duration-200 bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
+            className="hover:shadow-lg  transition-all duration-200 bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
             onClick={() => onCitySelect(city.city)}
           >
             <CardHeader className="pb-2">
@@ -125,23 +126,8 @@ export const PopularCities = ({ unit, cities, onUnitToggle, onCitySelect }: Popu
           </Card>
         ))}
       </div>
-
-      <Card className="mt-8 bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-sm">
-        <CardHeader>
-          <CardTitle className="text-gray-900 dark:text-white">Search for Any City</CardTitle>
-          <CardDescription className="text-gray-600 dark:text-gray-300">
-            Want to know the weather for a specific location? Use our search feature!
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex items-center space-x-2">
-            <FaSearch className="w-5 h-5 text-blue-500 dark:text-blue-400" />
-            <p className="text-sm text-gray-600 dark:text-gray-300">
-              Simply type the name of any city in the search bar above to get detailed weather information.
-            </p>
-          </div>
-        </CardContent>
-      </Card>
+      <WeatherFeatures weatherData={popularWeather} unit={unit} />
+      
     </div>
   );
 };
